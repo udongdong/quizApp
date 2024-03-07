@@ -1,3 +1,15 @@
-export type QuizDifficulty = 'mudium' | 'easy' | 'hard';
+export type Difficulty = 'medium' | 'easy' | 'hard';
 
-export type QuizAnswer = {answer: string; correct: boolean};
+export type Quiz = {
+  difficulty: Difficulty;
+  question: string;
+  correct: string;
+  answers: string[];
+  selected?: string;
+};
+
+export type Review = {
+  date: Date;
+  quizList: Quiz[];
+  time: number;
+};

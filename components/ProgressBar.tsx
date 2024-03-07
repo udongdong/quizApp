@@ -6,8 +6,8 @@ type ProgressBarProps = {
   current: number;
 };
 
-export function QuizStatusBar(props: ProgressBarProps): React.JSX.Element {
-  const {total, current} = props;
+export function ProgressBar(props: ProgressBarProps): React.JSX.Element {
+  const {total = 0, current = 0} = props;
   const progressPercentage = (current / total) * 100;
 
   return (
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   progressFill: {
     height: '100%',
-    backgroundColor: '#4caf50', // Adjust the color of the filled progress bar as needed
+    backgroundColor: '#4caf50',
     borderRadius: 5,
   },
 });

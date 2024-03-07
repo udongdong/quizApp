@@ -1,80 +1,101 @@
 import React, {useState} from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
-import {QuizDifficulty} from '../../types/quiz';
+import {Difficulty} from '../../types/quiz';
 import check_blue from '../../assets/img/check_blue.png';
+import check_blank from '../../assets/img/check_blank.png';
+import {Badge} from './Badge';
+import {color} from '../../styles';
 
-type QuizProp = {
+type QuizProps = {
   question: string;
   answers: string[];
-  difficulty: QuizDifficulty;
+  difficulty: Difficulty;
   correct: string;
+  selected?: string;
   isDone: boolean;
   onChange?: (a: string) => void;
 };
 
-export function Quiz(props: QuizProp): React.JSX.Element {
-  const {question, answers, correct = '', isDone = false, onChange} = props;
+export function Quiz(props: QuizProps): React.JSX.Element {
+  const {
+    question,
+    answers,
+    correct = '',
+    difficulty,
+    isDone = false,
+    onChange,
+    selected: prevSelected,
+  } = props;
 
   const [selected, setSelected] = useState<string>('');
 
-  const getFontColor = (answer: string) => {
-    if (correct === answer) {
+  const getFontColor = (isCorrect: boolean, isSelected: boolean) => {
+    if (isCorrect) {
       return styles.correct;
     }
-    if (selected === answer) {
+    if (isSelected) {
       return styles.incorrect;
     }
     return {};
   };
 
   return (
-    <View>
-      <Text style={styles.question}>Q) {question}</Text>
-      {answers.map(a => {
-        const answer = isDone && correct === a ? `${a} (정답)` : a;
-        const fontColor = isDone && getFontColor(a);
+    answers && (
+      <View style={styles.container}>
+        <Badge style={styles.badge} type={difficulty} />
+        <Text style={styles.question}>{`Q) ${question}`}</Text>
+        {answers?.map(a => {
+          const answer = isDone && correct === a ? `${a} (정답)` : a;
+          const isSelected = prevSelected ? prevSelected === a : selected === a;
+          const fontColor = isDone && getFontColor(correct === a, isSelected);
+          const img = isSelected ? check_blue : check_blank;
 
-        return (
-          <Pressable
-            style={styles.answer}
-            onPress={() => {
-              setSelected(a);
-              if (onChange) {
-                onChange(a);
-              }
-            }}>
-            {selected === a ? (
-              <Image style={styles.checkImage} source={check_blue} />
-            ) : (
-              <View style={styles.checkImage} />
-            )}
-            <Text style={[styles.answerText, fontColor]}>{answer}</Text>
-          </Pressable>
-        );
-      })}
-    </View>
+          return (
+            <Pressable
+              style={styles.answer}
+              onPress={() => {
+                if (isDone) {
+                  return;
+                }
+
+                setSelected(a);
+                if (onChange) {
+                  onChange(a);
+                }
+              }}>
+              <Image style={styles.checkImage} source={img} />
+              <Text style={[styles.answerText, fontColor]}>{answer}</Text>
+            </Pressable>
+          );
+        })}
+      </View>
+    )
   );
 }
 
 const styles = StyleSheet.create({
-  question: {
+  container: {
     margin: 20,
+  },
+  badge: {
+    margin: 10,
+  },
+  question: {
     fontSize: 20,
   },
   answer: {
     flexDirection: 'row',
     alignItems: 'center',
     margin: 10,
-    marginLeft: 30,
   },
   answerText: {
     marginLeft: 10,
   },
   correct: {
-    color: 'blue',
+    color: color.primary,
   },
   incorrect: {
-    color: 'red',
+    color: color.error,
   },
   checkImage: {
     width: 20,
