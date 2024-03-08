@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Pressable, Image, StyleSheet} from 'react-native';
-import close from 'assets/img/close.png';
+import close from '../../../assets/img/close.png';
 import {useNavigation} from '@react-navigation/native';
-import {MainStackNavigationProp} from '~/screens/screenTypes';
+import {MainStackNavigationProp} from '../../../screens/screenTypes';
 
 export function QuizScreenHeader(): React.JSX.Element {
   const navigation = useNavigation<MainStackNavigationProp>();

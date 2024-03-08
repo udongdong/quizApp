@@ -1,8 +1,8 @@
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {MainStackNavigationProp, MainStackParamList} from '../screenTypes';
-import {Quiz} from 'components/quiz/Quiz';
-import {Space} from 'components/Space';
+import {Quiz} from '../../components/quiz/Quiz';
+import {Space} from '../../components/Space';
 import {
   ScrollView,
   View,
@@ -11,9 +11,9 @@ import {
   Pressable,
   Text,
 } from 'react-native';
-import back from 'assets/img/back.png';
-import check_blue from 'assets/img/check_blue.png';
-import check_blank from 'assets/img/check_blank.png';
+import back from '../../assets/img/back.png';
+import check_blue from '../../assets/img/check_blue.png';
+import check_blank from '../../assets/img/check_blank.png';
 
 export default function ReviewDetail(): React.JSX.Element {
   const route = useRoute<RouteProp<MainStackParamList, 'reviewDetail'>>();

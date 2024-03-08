@@ -19,10 +19,11 @@ module.exports = {
   },
   testMatch: ['<rootDir>/__tests__/**/*.test.(js|jsx|ts|tsx)'],
   transformIgnorePatterns: ['node_modules/(?!(@react-native|react-native)/)'],
+  setupFiles: ['<rootDir>/__mocks__/jestSetupFile.ts'],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/__mocks__/fileMock.ts',
-
+    uuid: require.resolve('uuid'),
     // '@/(.*)$': '<rootDir>/src/$1',
     // '^@root(.*)$': '<rootDir>/src$1',
     // '^@screens(.*)$': '<rootDir>/src/screens$1',

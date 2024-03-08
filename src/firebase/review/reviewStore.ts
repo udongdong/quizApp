@@ -1,5 +1,5 @@
 import firestore from '@react-native-firebase/firestore';
-import {Review} from 'types';
+import {Review} from '../../types';
 
 export const firestoreBase = firestore();
 

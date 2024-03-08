@@ -3,8 +3,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {MainStackNavigationProp, MainStackParamList} from '../screenTypes';
 import {formatNumberToTime} from '../../utils';
-import {Space} from '../../components/Space';
-import {Button} from '../../components/Button';
+import {Space, Button} from '../../components';
 
 export function QuizResultScreen(): React.JSX.Element {
   const route = useRoute<RouteProp<MainStackParamList, 'quizResultScreen'>>();

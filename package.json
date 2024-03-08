@@ -58,9 +58,5 @@
   },
   "engines": {
     "node": ">=18"
-  },
-  "moduleDirectories": [
-    "node_modules",
-    "src"
-  ]
+  }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, ViewStyle} from 'react-native';
-import {Difficulty} from 'types/quiz';
-import {color} from 'styles';
+import {Difficulty} from '../../types';
+import {color} from '../../styles';
 
 type BadgeProps = {
   style?: ViewStyle;

@@ -1,12 +1,11 @@
 import React from 'react';
-import {Review} from '../../types/quiz';
 import {StyleSheet, Text, View} from 'react-native';
-import {Space} from '../../components/Space';
-import {formatNumberToTime} from '../../utils';
 import {useNavigation} from '@react-navigation/native';
+import {Review} from '../../types';
+import {Space, Button} from '../../components';
+import {formatNumberToTime} from '../../utils';
 import {MainStackNavigationProp} from '../screenTypes';
 import {color} from '../../styles';
-import {Button} from '../../components/Button';
 
 export default function ReviewCard(props: Review): React.JSX.Element {
   const {date, quizList, time} = props;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {color} from 'styles';
+import {color} from '../../../styles';
 
 export function QuizScreenNotice(): React.JSX.Element {
   return (

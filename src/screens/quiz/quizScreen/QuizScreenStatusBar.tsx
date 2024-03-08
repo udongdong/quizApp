@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {ProgressBar} from 'components';
-import {formatNumberToTime} from 'utils';
+import {ProgressBar} from '../../../components';
+import {formatNumberToTime} from '../../../utils';
 
 type QuizScreenStatusBarProps = {
   total: number;

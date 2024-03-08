@@ -1,12 +1,14 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Quiz} from 'components/quiz/Quiz';
 import {Alert, StyleSheet, View} from 'react-native';
-import {getNewQuiz, updateMyQuiz} from 'modules/quiz/quizModules';
+import {getNewQuiz, updateMyQuiz} from '../../../modules';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
-import {MainStackNavigationProp, MainStackParamList} from 'screens/screenTypes';
-import {Quiz as QuizType} from 'types';
-import {Button} from 'components';
-import {color} from 'styles';
+import {
+  MainStackNavigationProp,
+  MainStackParamList,
+} from '../../../screens/screenTypes';
+import {Quiz as QuizType} from '../../../types';
+import {Button, Quiz} from '../../../components';
+import {color} from '../../../styles';
 import {QuizScreenHeader} from './QuizScreenHeader';
 import {QuizScreenStatusBar} from './QuizScreenStatusBar';
 import {QuizScreenNotice} from './QuizScreenNotice';
@@ -50,10 +52,9 @@ export default function QuizScreen(): React.JSX.Element {
       ? undefined
       : setInterval(() => setTime(t => t + 1), 1000);
 
-    if (isDone) {
+    if (isDone && interval) {
       clearInterval(interval);
     }
-    return () => clearInterval(interval);
   }, [isDone, isFetching]);
 
   // 다음 문제 풀기

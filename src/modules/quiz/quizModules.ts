@@ -1,8 +1,8 @@
-import {fetchNewQuiz} from 'api';
-import {fetchReviews, postMyQuiz} from 'firebase';
+import {fetchNewQuiz} from '../../api';
+import {fetchReviews, postMyQuiz} from '../../firebase';
 import {Difficulty, Quiz} from 'types';
-import {decodedHtmlEntity, suffle} from 'utils';
-import {getUserId} from 'modules/user';
+import {decodedHtmlEntity, suffle} from '../../utils';
+import {getUserId} from '../../modules';
 
 type GetNewQuizParams = {
   difficulty?: Difficulty;

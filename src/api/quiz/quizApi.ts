@@ -1,5 +1,5 @@
 import {AxiosResponse} from 'axios';
-import {Difficulty} from '../../types/quiz';
+import {Difficulty} from '../../types';
 import {apiBase} from '../apiBase';
 
 export type QuizRes = {

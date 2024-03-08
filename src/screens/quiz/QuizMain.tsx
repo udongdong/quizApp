@@ -2,10 +2,8 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useRef} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {MainStackNavigationProp} from '../screenTypes';
-import {Button} from '../../components/Button';
-import {RadioButton} from '../../components/RadioButton';
-import {Space} from '../../components/Space';
-import {Difficulty} from '../../types/quiz';
+import {RadioButton, Space, Button} from '../../components';
+import {Difficulty} from '../../types';
 
 export default function QuizMain(): React.JSX.Element {
   const navigation = useNavigation<MainStackNavigationProp>();
