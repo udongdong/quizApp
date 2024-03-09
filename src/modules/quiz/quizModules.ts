@@ -11,7 +11,7 @@ type GetNewQuizParams = {
 export const getNewQuiz = async (params: GetNewQuizParams): Promise<Quiz[]> => {
   const result = await fetchNewQuiz(params.difficulty);
 
-  return result.data.results.map(q => {
+  return result.results.map(q => {
     const {
       question = '',
       correct_answer = '',

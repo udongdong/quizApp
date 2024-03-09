@@ -15,7 +15,7 @@ import back from '../../assets/img/back.png';
 import check_blue from '../../assets/img/check_blue.png';
 import check_blank from '../../assets/img/check_blank.png';
 
-export default function ReviewDetail(): React.JSX.Element {
+export function ReviewDetail(): React.JSX.Element {
   const route = useRoute<RouteProp<MainStackParamList, 'reviewDetail'>>();
   const {quizList} = route.params;
 
@@ -44,7 +44,7 @@ export default function ReviewDetail(): React.JSX.Element {
 
       <ScrollView>
         {quizList
-          .filter(q => isShowAll || q.correct !== q.selected)
+          ?.filter(q => isShowAll || q.correct !== q.selected)
           .map((q, i) => {
             return (
               <View key={i}>

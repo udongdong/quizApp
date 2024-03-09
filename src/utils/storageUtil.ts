@@ -12,7 +12,9 @@ export const storeData = async (key: StorageKeys, value: string) => {
   }
 };
 
-export const getData = async (key: string): Promise<string | undefined> => {
+export const getData = async (
+  key: StorageKeys,
+): Promise<string | undefined> => {
   try {
     const value = await AsyncStorage.getItem(key);
     return value ?? undefined;
@@ -21,7 +23,7 @@ export const getData = async (key: string): Promise<string | undefined> => {
   }
 };
 
-export const removeData = async (key: string) => {
+export const removeData = async (key: StorageKeys) => {
   try {
     await AsyncStorage.removeItem(key);
   } catch (e) {

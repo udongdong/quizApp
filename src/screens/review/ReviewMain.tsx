@@ -3,9 +3,9 @@ import {ScrollView} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {useQuery} from '@tanstack/react-query';
 import {getMyQuiz} from '../../modules';
-import ReviewCard from './ReviewCard';
+import {ReviewCard} from './ReviewCard';
 
-export default function ReviewMain(): React.JSX.Element {
+export function ReviewMain(): React.JSX.Element {
   const isFocused = useIsFocused();
 
   const {data: reviewList} = useQuery({

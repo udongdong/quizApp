@@ -2,10 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Alert, StyleSheet, View} from 'react-native';
 import {getNewQuiz, updateMyQuiz} from '../../../modules';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
-import {
-  MainStackNavigationProp,
-  MainStackParamList,
-} from '../../../screens/screenTypes';
+import {MainStackNavigationProp, MainStackParamList} from '../../../screens';
 import {Quiz as QuizType} from '../../../types';
 import {Button, Quiz} from '../../../components';
 import {color} from '../../../styles';
@@ -15,7 +12,7 @@ import {QuizScreenNotice} from './QuizScreenNotice';
 import {QuizLoading} from './QuizLoading';
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query';
 
-export default function QuizScreen(): React.JSX.Element {
+export function QuizScreen(): React.JSX.Element {
   const route = useRoute<RouteProp<MainStackParamList, 'quizScreen'>>();
 
   const [index, setIndex] = useState<number>(0); // 현재 풀고 있는 문항 index
@@ -27,9 +24,10 @@ export default function QuizScreen(): React.JSX.Element {
   const navigation = useNavigation<MainStackNavigationProp>();
   const queryClient = useQueryClient();
 
+  const {quizList: againQuizList} = route.params;
   const isQuizAgain = route.params.quizList !== undefined; // 다시 풀기 여부
 
-  const {data: quizList, isFetching} = useQuery<QuizType[] | Error>({
+  const {data: fetchedquizList, isFetching} = useQuery<QuizType[] | Error>({
     queryKey: ['FETCH_NEW_QUIZ'],
     queryFn: () =>
       getNewQuiz({
@@ -38,6 +36,10 @@ export default function QuizScreen(): React.JSX.Element {
     enabled: !isQuizAgain,
     retry: 3,
   });
+
+  const quizList = (
+    isQuizAgain ? againQuizList : fetchedquizList
+  ) as QuizType[];
 
   const mutate = useMutation({
     mutationKey: ['POST_MY_QUIZ'],
@@ -66,7 +68,7 @@ export default function QuizScreen(): React.JSX.Element {
   // 문제 종료 후 결과 화면 이동
   const goQuizResultScreen = async () => {
     // 문제 리스트에 제출한 답안 머지
-    const result = (quizList as QuizType[]).map((q, i) => {
+    const result = quizList.map((q, i) => {
       const selected = selectedList.current[i];
       return {...q, ...{selected}};
     });
@@ -87,7 +89,8 @@ export default function QuizScreen(): React.JSX.Element {
   const sumitQuestion = () => {
     if (selectedList.current[index] !== undefined) {
       setSumit(true);
-      if ((quizList as QuizType[]).length - 1 === index) {
+
+      if (quizList.length - 1 === index) {
         setDone(true);
       }
     } else {
@@ -102,14 +105,14 @@ export default function QuizScreen(): React.JSX.Element {
       <QuizScreenHeader />
 
       <QuizScreenStatusBar
-        total={(quizList as QuizType[]).length || 0}
+        total={quizList?.length || 0}
         current={index + 1}
         time={time}
       />
 
       {quizList && (
         <Quiz
-          {...(quizList as QuizType[])[index]}
+          {...quizList[index]}
           isDone={isSumitted}
           onChange={(a: string) => {
             if (!isSumitted) {

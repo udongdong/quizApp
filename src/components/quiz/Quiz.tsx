@@ -6,7 +6,7 @@ import check_blank from '../../assets/img/check_blank.png';
 import {Badge} from './Badge';
 import {color} from '../../styles';
 
-type QuizProps = {
+export type QuizProps = {
   question: string;
   answers: string[];
   difficulty: Difficulty;
@@ -39,6 +39,13 @@ export function Quiz(props: QuizProps): React.JSX.Element {
     return {};
   };
 
+  const selectAnswer = (a: string) => {
+    setSelected(a);
+    if (onChange) {
+      onChange(a);
+    }
+  };
+
   return (
     answers && (
       <View style={styles.container}>
@@ -54,16 +61,7 @@ export function Quiz(props: QuizProps): React.JSX.Element {
             <Pressable
               key={i}
               style={styles.answer}
-              onPress={() => {
-                if (isDone) {
-                  return;
-                }
-
-                setSelected(a);
-                if (onChange) {
-                  onChange(a);
-                }
-              }}>
+              onPress={() => !isDone && selectAnswer(a)}>
               <Image style={styles.checkImage} source={img} />
               <Text style={[styles.answerText, fontColor]}>{answer}</Text>
             </Pressable>

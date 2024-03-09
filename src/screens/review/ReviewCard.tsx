@@ -7,7 +7,7 @@ import {formatNumberToTime} from '../../utils';
 import {MainStackNavigationProp} from '../screenTypes';
 import {color} from '../../styles';
 
-export default function ReviewCard(props: Review): React.JSX.Element {
+export function ReviewCard(props: Review): React.JSX.Element {
   const {date, quizList, time} = props;
 
   const navigation = useNavigation<MainStackNavigationProp>();

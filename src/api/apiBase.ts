@@ -9,7 +9,6 @@ apiBase.interceptors.request.use(
   },
   error => {
     console.log('[[request]] error', error);
-    console.log(error);
     return error;
   },
 );

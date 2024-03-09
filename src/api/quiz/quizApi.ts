@@ -14,20 +14,9 @@ export type QuizRes = {
   }[];
 };
 
-// export const fetchNewQuiz = async (): Promise<QuizRes> => {
-//   const res = await apiBase.get('https://opentdb.com/api.php', {
-//     params: {
-//       amount: 10,
-//       type: 'multiple',
-//     },
-//   });
-
-//   return res.data;
-// };
-
 export const fetchNewQuiz = async (
   difficulty?: Difficulty,
-): Promise<AxiosResponse<QuizRes, Error>> => {
+): Promise<QuizRes> => {
   const res = await apiBase.get('https://opentdb.com/api.php', {
     params: {
       amount: 10,
@@ -36,5 +25,5 @@ export const fetchNewQuiz = async (
     },
   });
 
-  return res;
+  return res.data;
 };

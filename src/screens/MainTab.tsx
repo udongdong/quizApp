@@ -1,11 +1,10 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {MainTabParamList} from './screenTypes';
-import QuizMain from './quiz/QuizMain';
-import ReviewMain from './review/ReviewMain';
+import {QuizMain, ReviewMain} from './';
 import {color} from '../styles';
 
-export default function MainTab(): React.JSX.Element {
+export function MainTab(): React.JSX.Element {
   const Tab = createBottomTabNavigator<MainTabParamList>();
 
   return (

@@ -5,7 +5,7 @@ import {MainStackNavigationProp} from '../screenTypes';
 import {RadioButton, Space, Button} from '../../components';
 import {Difficulty} from '../../types';
 
-export default function QuizMain(): React.JSX.Element {
+export function QuizMain(): React.JSX.Element {
   const navigation = useNavigation<MainStackNavigationProp>();
 
   const selectedDifficulty = useRef<number>(0);
