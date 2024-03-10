@@ -16,6 +16,8 @@ export const fetchReviews = async (userId: string): Promise<Review[]> => {
     return {...t, ...{date}};
   }) as Review[];
 
+  console.log(result);
+
   return result;
 };
 

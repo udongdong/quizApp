@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuizScreenStatusBar test render QuizScreenStatusBar 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "flexDirection": "row",
+    }
+  }
+>
+  <View
+    style={
+      {
+        "flex": 1,
+        "flexDirection": "row",
+        "padding": 15,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "backgroundColor": "#ddd",
+          "borderRadius": 5,
+          "height": 10,
+          "overflow": "hidden",
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          {
+            "backgroundColor": "#4caf50",
+            "borderRadius": 5,
+            "height": "100%",
+            "width": "NaN%",
+          }
+        }
+      />
+    </View>
+  </View>
+  <Text
+    style={
+      {
+        "padding": 10,
+        "width": "19%",
+      }
+    }
+  >
+    01:40
+  </Text>
+</View>
+`;

@@ -4,7 +4,7 @@ import {fetchNewQuizResult} from '../../__mocks__/api.mock';
 
 describe('quizModule test', () => {
   test('getNewQuiz test', async () => {
-    const news = await getNewQuiz({});
-    expect(news).toEqual(fetchNewQuizResult);
+    const newQuiz = await getNewQuiz({});
+    expect(newQuiz).toEqual(fetchNewQuizResult);
   });
 });

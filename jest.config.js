@@ -12,7 +12,7 @@ module.exports = {
   testMatch: ['<rootDir>/__tests__/**/*.test.(js|jsx|ts|tsx)'],
   transformIgnorePatterns: ['node_modules/(?!(@react-native|react-native)/)'],
   setupFiles: [
-    '<rootDir>/__mocks__/jestSetupFile.ts',
+    '<rootDir>/__mocks__/asyncStorage.mock.ts',
     '<rootDir>/__mocks__/quizUtil.mock.ts',
     '<rootDir>/__mocks__/api.mock.ts',
   ],

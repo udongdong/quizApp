@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`QuizScreen render test render QuizScreen 1`] = `
+exports[`ReviewMain test render ReviewMain 1`] = `
 <RNCSafeAreaProvider
   onInsetsChange={[Function]}
   style={
@@ -80,29 +80,9 @@ exports[`QuizScreen render test render QuizScreen 1`] = `
             ]
           }
         >
-          <View
-            style={
-              {
-                "alignItems": "center",
-                "flex": 1,
-                "justifyContent": "center",
-              }
-            }
-          >
-            <Text
-              style={
-                {
-                  "color": "#5F37FF",
-                  "fontSize": 22,
-                  "margin": 10,
-                  "textAlign": "center",
-                }
-              }
-            >
-              문제를 불러오고 있습니다. 
-잠시만 기다려주세요
-            </Text>
-          </View>
+          <RCTScrollView>
+            <View />
+          </RCTScrollView>
         </View>
       </View>
       <RNSScreenStackHeaderConfig
@@ -115,7 +95,7 @@ exports[`QuizScreen render test render QuizScreen 1`] = `
         hidden={true}
         hideBackButton={false}
         largeTitleHideShadow={false}
-        title="quizScreen"
+        title="reviewDetail"
         titleColor="rgb(28, 28, 30)"
         topInsetEnabled={false}
         translucent={false}

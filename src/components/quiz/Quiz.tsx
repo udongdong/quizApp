@@ -59,6 +59,7 @@ export function Quiz(props: QuizProps): React.JSX.Element {
 
           return (
             <Pressable
+              testID={`${i}`}
               key={i}
               style={styles.answer}
               onPress={() => !isDone && selectAnswer(a)}>

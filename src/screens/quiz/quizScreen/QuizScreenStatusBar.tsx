@@ -3,7 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import {ProgressBar} from '../../../components';
 import {formatNumberToTime} from '../../../utils';
 
-type QuizScreenStatusBarProps = {
+export type QuizScreenStatusBarProps = {
   total: number;
   current: number;
   time: number;

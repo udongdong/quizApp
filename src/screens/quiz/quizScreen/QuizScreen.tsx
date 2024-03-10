@@ -24,22 +24,16 @@ export function QuizScreen(): React.JSX.Element {
   const navigation = useNavigation<MainStackNavigationProp>();
   const queryClient = useQueryClient();
 
-  const {quizList: againQuizList} = route.params;
-  const isQuizAgain = route.params.quizList !== undefined; // 다시 풀기 여부
+  const {quizList, difficulty} = route.params;
+
+  const isQuizAgain = quizList !== undefined; // 다시 풀기 여부
 
   const {data: fetchedquizList, isFetching} = useQuery<QuizType[] | Error>({
     queryKey: ['FETCH_NEW_QUIZ'],
     queryFn: () =>
-      getNewQuiz({
-        difficulty: route.params.difficulty,
-      }),
-    enabled: !isQuizAgain,
+      isQuizAgain ? Promise.resolve(quizList!) : getNewQuiz({difficulty}),
     retry: 3,
   });
-
-  const quizList = (
-    isQuizAgain ? againQuizList : fetchedquizList
-  ) as QuizType[];
 
   const mutate = useMutation({
     mutationKey: ['POST_MY_QUIZ'],
@@ -68,7 +62,7 @@ export function QuizScreen(): React.JSX.Element {
   // 문제 종료 후 결과 화면 이동
   const goQuizResultScreen = async () => {
     // 문제 리스트에 제출한 답안 머지
-    const result = quizList.map((q, i) => {
+    const result = (fetchedquizList as QuizType[]).map((q, i) => {
       const selected = selectedList.current[i];
       return {...q, ...{selected}};
     });
@@ -90,7 +84,7 @@ export function QuizScreen(): React.JSX.Element {
     if (selectedList.current[index] !== undefined) {
       setSumit(true);
 
-      if (quizList.length - 1 === index) {
+      if ((fetchedquizList as QuizType[]).length - 1 === index) {
         setDone(true);
       }
     } else {
@@ -105,14 +99,14 @@ export function QuizScreen(): React.JSX.Element {
       <QuizScreenHeader />
 
       <QuizScreenStatusBar
-        total={quizList?.length || 0}
+        total={(fetchedquizList as QuizType[])?.length || 0}
         current={index + 1}
         time={time}
       />
 
-      {quizList && (
+      {(fetchedquizList as QuizType[]) && (
         <Quiz
-          {...quizList[index]}
+          {...(fetchedquizList as QuizType[])[index]}
           isDone={isSumitted}
           onChange={(a: string) => {
             if (!isSumitted) {
