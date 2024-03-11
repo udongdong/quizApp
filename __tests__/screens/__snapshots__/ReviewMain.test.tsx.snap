@@ -74,9 +74,28 @@ exports[`ReviewMain test render ReviewMain 1`] = `
             }
           }
         >
-          <Text>
-            리뷰 정보를 불러오고 있습니다.
-          </Text>
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flex": 1,
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "#5F37FF",
+                  "fontSize": 22,
+                  "margin": 10,
+                  "textAlign": "center",
+                }
+              }
+            >
+              리뷰 정보를 불러오고 있습니다.
+            </Text>
+          </View>
         </View>
         <View
           onLayout={[Function]}
