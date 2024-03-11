@@ -1,7 +1,9 @@
-export const fetchMyQuizResult = [
+import {Review} from 'types';
+
+export const fetchMyQuizResult: Review[] = [
   {
     id: '2f11eebc-fa66-4851-8f17-e3197cb095f1',
-    date: '2024-03-07T13:15:53.573Z',
+    date: new Date('2024-03-07T13:15:53.573Z'),
     time: 39,
     quizList: [
       {

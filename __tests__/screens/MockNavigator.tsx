@@ -26,23 +26,25 @@ export function MockTabNavigator(props: {children: ReactNode}) {
   const Tab = createBottomTabNavigator<MainTabParamList>();
 
   return (
-    <MockStackNavigator>
-      <Tab.Navigator
-        screenOptions={{
-          tabBarLabelPosition: 'beside-icon',
-          tabBarLabelStyle: {
-            fontWeight: '700',
-            fontSize: 15,
-          },
-          tabBarIconStyle: {display: 'none'},
-          tabBarStyle: {height: 60},
-          tabBarActiveTintColor: color.primary,
-          headerTitleStyle: {
-            color: color.primary,
-          },
-        }}>
-        {props.children}
-      </Tab.Navigator>
-    </MockStackNavigator>
+    <QueryClientProvider client={new QueryClient()}>
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={{
+            tabBarLabelPosition: 'beside-icon',
+            tabBarLabelStyle: {
+              fontWeight: '700',
+              fontSize: 15,
+            },
+            tabBarIconStyle: {display: 'none'},
+            tabBarStyle: {height: 60},
+            tabBarActiveTintColor: color.primary,
+            headerTitleStyle: {
+              color: color.primary,
+            },
+          }}>
+          {props.children}
+        </Tab.Navigator>
+      </NavigationContainer>
+    </QueryClientProvider>
   );
 }

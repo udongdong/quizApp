@@ -2,38 +2,40 @@ import 'react-native';
 import React from 'react';
 import {QuizMain} from '../../src/screens';
 
-import {render, RenderAPI} from '@testing-library/react-native';
-import {MockStackNavigator} from './MockNavigator';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {MainStackParamList} from 'screens/screenTypes';
+import {render, screen} from '@testing-library/react-native';
+import {MockTabNavigator} from './MockNavigator';
+import {MainTabParamList} from 'screens/screenTypes';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 function getComponent() {
-  const MainStack = createNativeStackNavigator<MainStackParamList>();
+  const Tab = createBottomTabNavigator<MainTabParamList>();
 
   return (
-    <MockStackNavigator>
-      <MainStack.Screen name="reviewDetail" component={QuizMain} />
-    </MockStackNavigator>
+    <MockTabNavigator>
+      <Tab.Screen name="quiz" component={QuizMain} />
+    </MockTabNavigator>
   );
 }
 
 describe('QuizMain test', () => {
-  let rendered: RenderAPI;
+  const component = getComponent();
 
-  beforeEach(() => {
-    rendered = render(getComponent());
+  beforeEach(async () => {
+    jest.useFakeTimers();
   });
 
   test('render QuizMain', () => {
-    expect(rendered).toMatchSnapshot();
-    expect(rendered).toBeTruthy();
+    render(component);
 
-    expect(rendered.getByText('문제 시작')).toBeDefined();
+    expect(screen).toMatchSnapshot();
+    expect(screen).toBeTruthy();
 
-    expect(rendered.getByText('난이도 선택')).toBeDefined();
-    expect(rendered.getByText('easy')).toBeDefined();
-    expect(rendered.getByText('medium')).toBeDefined();
-    expect(rendered.getByText('hard')).toBeDefined();
-    expect(rendered.getByText('random')).toBeDefined();
+    expect(screen.getByText('문제 시작')).toBeDefined();
+
+    expect(screen.getByText('난이도 선택')).toBeDefined();
+    expect(screen.getByText('easy')).toBeDefined();
+    expect(screen.getByText('medium')).toBeDefined();
+    expect(screen.getByText('hard')).toBeDefined();
+    expect(screen.getByText('random')).toBeDefined();
   });
 });

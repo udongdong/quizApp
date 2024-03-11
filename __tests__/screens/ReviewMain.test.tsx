@@ -3,25 +3,25 @@ import React from 'react';
 import {ReviewMain} from '../../src/screens';
 
 import {render, screen} from '@testing-library/react-native';
-import {MockStackNavigator} from './MockNavigator';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {MainStackParamList} from 'screens/screenTypes';
+import {MockTabNavigator} from './MockNavigator';
+import {MainTabParamList} from '../../src/screens/screenTypes';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 function getComponent() {
-  const MainStack = createNativeStackNavigator<MainStackParamList>();
+  const Tab = createBottomTabNavigator<MainTabParamList>();
 
   return (
-    <MockStackNavigator>
-      <MainStack.Screen name="reviewDetail" component={ReviewMain} />
-    </MockStackNavigator>
+    <MockTabNavigator>
+      <Tab.Screen name="review" component={ReviewMain} />
+    </MockTabNavigator>
   );
 }
 
 describe('ReviewMain test', () => {
   const component = getComponent();
 
-  beforeEach(() => {
-    // jest.useFakeTimers();
+  beforeEach(async () => {
+    jest.useFakeTimers();
   });
 
   test('render ReviewMain', async () => {

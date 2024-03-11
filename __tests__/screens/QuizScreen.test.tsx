@@ -10,7 +10,7 @@ import {
 } from '@testing-library/react-native';
 import {MockStackNavigator} from './MockNavigator';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {MainStackParamList} from 'screens/screenTypes';
+import {MainStackParamList} from '../../src/screens/screenTypes';
 import {fetchNewQuizResult} from '../../__mocks__/api.mock';
 
 jest.mock('@react-navigation/native', () => ({

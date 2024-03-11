@@ -28,7 +28,7 @@ export function ReviewCard(props: Review): React.JSX.Element {
   };
 
   return (
-    <View style={styles.container}>
+    <View testID="reviewCard" style={styles.container}>
       <Text>{`${date.toDateString()}`}</Text>
       <Space h={10} />
 
