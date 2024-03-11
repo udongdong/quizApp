@@ -1,79 +1,88 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# QuizApp
 
-# Getting Started
+퀴즈를 풀고 내가 푼 문제를 review 할 수 있는 간단한 react-native 앱입니다.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Dev environment
 
-## Step 1: Start the Metro Server
+> **Note**: Intel Macbook 에서 개발. (보유중인 Macbook 이 Intel 칩이라 Silicon Macbook 에서는 테스트 하지 못했습니다. 😭)
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Getting Started
 
-To start Metro, run the following command from the _root_ of your React Native project:
+### step 1 : 필요한 모듈을 초기화
 
 ```bash
-# using npm
-npm start
+yarn package:init  # node_module 삭제, 설치 및 cocoapod 설치 까지 할 수 있도록 설정
 
-# OR using Yarn
+yarn package:init:clean # 필요시 cache 삭제 및 clean 이후 초기화
+```
+
+### Step 2: Metro Server 구동
+
+```bash
 yarn start
 ```
 
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+### Step 3: 테스트 앱 실행
 
 ### For Android
 
 ```bash
-# using npm
-npm run android
-
-# OR using Yarn
 yarn android
 ```
 
 ### For iOS
 
 ```bash
-# using npm
-npm run ios
-
-# OR using Yarn
 yarn ios
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+## 주요 라이브러리
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+- typescript : type 설정을 위해 사용
+- react-query : 상태 관리 및 api call 관리를 위해 사용
+- react-navigation : 화면 이동 및 bottom-tab 을 위해 사용
+- react-natve-firebase : 내가 푼 문제를 저장하기 위한 firestore 사용
+- uuid : firestore 에 데이터 저장을 위한 id 생성을 위해 사용
+- axios : api call 을 위해 사용
+- testing-library : test 를 위해 사용
 
-## Step 3: Modifying your App
+## 구현 사항
 
-Now that you have successfully run the app, let's modify it.
+- 퀴즈 풀기
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+  - 퀴즈 난이도 설정 후 문제 시작 (난이도 : easy | medium | hard | random)
+  - 퀴즈 진행 사항 progress bar 로 구현
+  - 퀴즈 시작시 타이머 시작. 모든 문제 종료 후 타이머 종료
+  - 퀴즈 난이도 뱃지로 표시
+  - 답 선택 후 제출 버튼 클릭시 정답 확인 및 다음 문제로 버튼 출력
+  - 모든 퀴즈 종료시 문제 및 결과를 firestore 에 저장하고 결과 화면 이동
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+- 리뷰
+  - 내가 푼 문제들을 카드 형태로 출력
+  - 카드에는 정답수 / 총 문항수 / 정답률 / 소요 시간 표시
+  - 카드의 리뷰 버튼 클릭시 문제에 상세 보기 화면 전환
+  - 상세 보기시 문제와 답안 / 정답 / 내가 선택한 답 을 볼 수 있음
+  - 기본적으로 전체 문제 보기 지만 우측 상단에 '오답만 보기' 클릭시 틀린 문제만 표시
+  - 리뷰 카드에서 다시 풀기 클릭시 해당 문제들을 다시 풀 수 있음. (다시 풀기 시 firestore 에 저장 하지 않음)
 
-## Congratulations! :tada:
+## 테스트
 
-You've successfully run and modified your React Native App. :partying_face:
+TDD 코딩은 처음이라 전체 코드를 coverage 하진 못했습니다.
 
-### Now what?
+### 테스트 실행
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+```bash
+yarn test
 
-# Troubleshooting
+yarn test --coverage
+```
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+## Screen Capture
 
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+<p align="center">
+<img src="./screenCaptures/cature1.png" width="200px" height="450px" title="capture1"/>
+<img src="./screenCaptures/cature2.png" width="200px" height="450px" title="capture2"/>
+<img src="./screenCaptures/cature3.png" width="200px" height="450px" title="capture3"/>
+<img src="./screenCaptures/cature4.png" width="200px" height="450px" title="capture4"/>
+<img src="./screenCaptures/cature5.png" width="200px" height="450px" title="capture5"/>
+</p>
